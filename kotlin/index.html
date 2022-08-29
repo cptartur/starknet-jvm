@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>starknet-jvm</title>
+    <link href="images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "";</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+const savedDarkMode = storage ? JSON.parse(storage) : false
+if(savedDarkMode === true){
+    document.getElementsByTagName("html")[0].classList.add("theme-dark")
+}</script>
+<script type="text/javascript" src="scripts/sourceset_dependencies.js" async="async"></script>
+<link href="styles/style.css" rel="Stylesheet">
+<link href="styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="styles/main.css" rel="Stylesheet">
+<link href="styles/prism.css" rel="Stylesheet">
+<link href="styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="scripts/prism.js" async="async"></script>
+</head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+            <a href="index.html">
+                    <span>starknet-jvm</span>
+            </a>
+    </div>
+    <div>
+0.0.3    </div>
+    <div class="pull-right d-flex">
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" id="content" pageIds="starknet-jvm::////PointingToDeclaration//1440829338">
+  <div class="breadcrumbs"></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>starknet-jvm</span></span></h1>
+    <div class="platform-hinted UnderCoverText" data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><p class="paragraph">StarkNet.kt is a library allowing for easy interaction with StarkNet gateway and nodes, including querying starknet state, executing transactions and deploying contracts.</p><p class="paragraph">Although written in Kotlin, StarkNet.kt has been created with compatibility with Java in mind.</p><h2 class=""> Making synchronous requests</h2><h3 class=""> In Java</h3><div class="sample-container"><pre><code class="block lang-java" theme="idea">import com.swmansion.starknet.account.Account;<br>import com.swmansion.starknet.account.StandardAccount;<br>import com.swmansion.starknet.data.types.BlockTag;<br>import com.swmansion.starknet.data.types.Felt;<br>import com.swmansion.starknet.provider.Provider;<br>import com.swmansion.starknet.provider.Request;<br>import com.swmansion.starknet.provider.gateway.GatewayProvider;<br><br>public class Main {<br>    public static void main(String[] args) {<br>        // Create a provider for interacting with StarkNet<br>        Provider provider = GatewayProvider.makeTestnetClient();<br><br>        // Create an account interface<br>        Felt accountAddress = Felt.fromHex(&quot;0x13241455&quot;);<br>        Felt privateKey = Felt.fromHex(&quot;0x425125&quot;);<br>        Account account = new StandardAccount(provider, accountAddress, privateKey);<br><br>        // Make a request<br>        Felt contractAddress = Felt.fromHex(&quot;0x42362362436&quot;);<br>        Felt storageKey = Felt.fromHex(&quot;0x13241253414&quot;);<br>        Request&lt;Felt&gt; request = account.getStorageAt(contractAddress, storageKey, BlockTag.LATEST);<br>        Felt response = request.send();<br><br>        System.out.println(response);<br>    }<br>}</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><h3 class=""> In Kotlin</h3><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">import com.swmansion.starknet.account.StandardAccount<br>import com.swmansion.starknet.data.types.BlockTag<br>import com.swmansion.starknet.data.types.Felt<br>import com.swmansion.starknet.provider.gateway.GatewayProvider<br><br>fun main() {<br>    // Create a provider for interacting with StarkNet<br>    val provider = GatewayProvider.makeTestnetClient()<br><br>    // Create an account interface<br>    val accountAddress = Felt.fromHex(&quot;0x1052524524&quot;)<br>    val privateKey = Felt.fromHex(&quot;0x4232362662&quot;)<br>    val account = StandardAccount(provider, accountAddress, privateKey)<br><br>    // Make a request<br>    val contractAddress = Felt.fromHex(&quot;0x423623626&quot;)<br>    val storageKey = Felt.fromHex(&quot;0x132412414&quot;)<br>    val request = account.getStorageAt(contractAddress, storageKey, BlockTag.LATEST)<br>    val response = request.send()<br><br>    println(response)<br>}</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><h2 class=""> Making asynchronous requests</h2><p class="paragraph">It is also possible to make asynchronous requests. <code class="lang-kotlin">Request.sendAsync()</code> returs a <code class="lang-kotlin">CompletableFuture</code> that can be than handled in preferred way.</p><h3 class=""> In Java</h3><div class="sample-container"><pre><code class="block lang-java" theme="idea">import com.swmansion.starknet.account.Account;<br>import com.swmansion.starknet.account.StandardAccount;<br>import com.swmansion.starknet.data.types.BlockTag;<br>import com.swmansion.starknet.data.types.Felt;<br>import com.swmansion.starknet.provider.Provider;<br>import com.swmansion.starknet.provider.Request;<br>import com.swmansion.starknet.provider.gateway.GatewayProvider;<br><br>import java.util.concurrent.CompletableFuture;<br><br>public class Main {<br>    public static void main(String[] args) {<br>        // Create a provider for interacting with StarkNet<br>        Provider provider = GatewayProvider.makeTestnetClient();<br><br>        // Create an account interface<br>        Felt accountAddress = Felt.fromHex(&quot;0x13241455&quot;);<br>        Felt privateKey = Felt.fromHex(&quot;0x425125&quot;);<br>        Account account = new StandardAccount(provider, accountAddress, privateKey);<br><br>        // Make a request<br>        Felt contractAddress = Felt.fromHex(&quot;0x42362362436&quot;);<br>        Felt storageKey = Felt.fromHex(&quot;0x13241253414&quot;);<br>        Request&lt;Felt&gt; request = account.getStorageAt(contractAddress, storageKey, BlockTag.LATEST);<br>        CompletableFuture&lt;Felt&gt; response = request.sendAsync();<br><br>        response.thenAccept(System.out::println);<br>    }<br>}</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><h3 class=""> In Kotlin</h3><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">import com.swmansion.starknet.account.StandardAccount<br>import com.swmansion.starknet.data.types.BlockTag<br>import com.swmansion.starknet.data.types.Felt<br>import com.swmansion.starknet.provider.gateway.GatewayProvider<br><br>fun main() {<br>    // Create a provider for interacting with StarkNet<br>    val provider = GatewayProvider.makeTestnetClient()<br><br>    // Create an account interface<br>    val accountAddress = Felt.fromHex(&quot;0x1052524524&quot;)<br>    val privateKey = Felt.fromHex(&quot;0x4232362662&quot;)<br>    val account = StandardAccount(provider, accountAddress, privateKey)<br><br>    // Make an asynchronous request<br>    val contractAddress = Felt.fromHex(&quot;0x423623626&quot;)<br>    val storageKey = Felt.fromHex(&quot;0x132412414&quot;)<br>    val request = account.getStorageAt(contractAddress, storageKey, BlockTag.LATEST)<br>    val future = request.sendAsync()<br><br>    future.thenAccept { println(it) }<br>}</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+  <h2 class="">Packages</h2>
+  <div class="table"><a data-name="-1999595294%2FPackages%2F1440829338" anchor-label="[root]" id="-1999595294%2FPackages%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+    <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="starknet-jvm/[root]/index.html">[root]</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1999595294%2FPackages%2F1440829338"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right"></div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-38899723%2FPackages%2F1440829338" anchor-label="com.swmansion.starknet.account" id="-38899723%2FPackages%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+    <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="starknet-jvm/com.swmansion.starknet.account/index.html">com.swmansion.starknet.account</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-38899723%2FPackages%2F1440829338"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right"></div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-1303162243%2FPackages%2F1440829338" anchor-label="com.swmansion.starknet.crypto" id="-1303162243%2FPackages%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+    <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="starknet-jvm/com.swmansion.starknet.crypto/index.html">com.swmansion.starknet.crypto</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1303162243%2FPackages%2F1440829338"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right"></div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="913919654%2FPackages%2F1440829338" anchor-label="com.swmansion.starknet.data" id="913919654%2FPackages%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+    <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="starknet-jvm/com.swmansion.starknet.data/index.html">com.swmansion.starknet.data</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="913919654%2FPackages%2F1440829338"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right"></div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-1187206927%2FPackages%2F1440829338" anchor-label="com.swmansion.starknet.data.types" id="-1187206927%2FPackages%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+    <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="starknet-jvm/com.swmansion.starknet.data.types/index.html">com.swmansion.starknet.data.types</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1187206927%2FPackages%2F1440829338"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right"></div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="1740939254%2FPackages%2F1440829338" anchor-label="com.swmansion.starknet.data.types.transactions" id="1740939254%2FPackages%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+    <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="starknet-jvm/com.swmansion.starknet.data.types.transactions/index.html">com.swmansion.starknet.data.types.transactions</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1740939254%2FPackages%2F1440829338"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right"></div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="1567730989%2FPackages%2F1440829338" anchor-label="com.swmansion.starknet.provider" id="1567730989%2FPackages%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+    <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="starknet-jvm/com.swmansion.starknet.provider/index.html">com.swmansion.starknet.provider</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1567730989%2FPackages%2F1440829338"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right"></div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-1276611095%2FPackages%2F1440829338" anchor-label="com.swmansion.starknet.provider.exceptions" id="-1276611095%2FPackages%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+    <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="starknet-jvm/com.swmansion.starknet.provider.exceptions/index.html">com.swmansion.starknet.provider.exceptions</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1276611095%2FPackages%2F1440829338"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right"></div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="1966516483%2FPackages%2F1440829338" anchor-label="com.swmansion.starknet.provider.gateway" id="1966516483%2FPackages%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+    <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="starknet-jvm/com.swmansion.starknet.provider.gateway/index.html">com.swmansion.starknet.provider.gateway</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1966516483%2FPackages%2F1440829338"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right"></div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="1297079268%2FPackages%2F1440829338" anchor-label="com.swmansion.starknet.provider.rpc" id="1297079268%2FPackages%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+    <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="starknet-jvm/com.swmansion.starknet.provider.rpc/index.html">com.swmansion.starknet.provider.rpc</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1297079268%2FPackages%2F1440829338"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right"></div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-386706851%2FPackages%2F1440829338" anchor-label="com.swmansion.starknet.service.http" id="-386706851%2FPackages%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+    <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="starknet-jvm/com.swmansion.starknet.service.http/index.html">com.swmansion.starknet.service.http</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-386706851%2FPackages%2F1440829338"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right"></div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-1441255514%2FPackages%2F1440829338" anchor-label="com.swmansion.starknet.signer" id="-1441255514%2FPackages%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+    <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="starknet-jvm/com.swmansion.starknet.signer/index.html">com.swmansion.starknet.signer</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1441255514%2FPackages%2F1440829338"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right"></div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2022 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>

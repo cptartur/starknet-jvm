@@ -1,0 +1,25 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:////PointingToDeclaration/[root]/package-summary.html
+$dokka.location:/MyClass///PointingToDeclaration/[root]/MyClass.html
+$dokka.location:com.swmansion.starknet.data.types/BlockId.Hash///PointingToDeclaration/com/swmansion/starknet/data/types/BlockId.Hash.html
+$dokka.location:com.swmansion.starknet.data.types/BlockId.Number///PointingToDeclaration/com/swmansion/starknet/data/types/BlockId.Number.html
+$dokka.location:com.swmansion.starknet.data.types/BlockId.Tag///PointingToDeclaration/com/swmansion/starknet/data/types/BlockId.Tag.html
+$dokka.location:com.swmansion.starknet.data.types/ContractClass.EntryPointsByType///PointingToDeclaration/com/swmansion/starknet/data/types/ContractClass.EntryPointsByType.html
+$dokka.location:com.swmansion.starknet.data.types/ContractDefinition.InvalidContractException///PointingToDeclaration/com/swmansion/starknet/data/types/ContractDefinition.InvalidContractException.html
+$dokka.location:com.swmansion.starknet.data.types/Felt.Companion///PointingToDeclaration/com/swmansion/starknet/data/types/Felt.Companion.html
+$dokka.location:com.swmansion.starknet.data.types/Uint256.Companion///PointingToDeclaration/com/swmansion/starknet/data/types/Uint256.Companion.html
+$dokka.location:com.swmansion.starknet.provider.gateway/GatewayProvider.Factory///PointingToDeclaration/com/swmansion/starknet/provider/gateway/GatewayProvider.Factory.html
+$dokka.location:com.swmansion.starknet.service.http/HttpService.Payload///PointingToDeclaration/com/swmansion/starknet/service/http/HttpService.Payload.html
+com.swmansion.starknet.account
+com.swmansion.starknet.crypto
+com.swmansion.starknet.data
+com.swmansion.starknet.data.types
+com.swmansion.starknet.data.types.transactions
+com.swmansion.starknet.provider
+com.swmansion.starknet.provider.exceptions
+com.swmansion.starknet.provider.gateway
+com.swmansion.starknet.provider.rpc
+com.swmansion.starknet.service.http
+com.swmansion.starknet.signer
+
